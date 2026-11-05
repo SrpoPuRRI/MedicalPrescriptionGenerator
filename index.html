@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Receta</title>
+</head>
+<body>
+
+    <span style="color: red; border: 5px solid cadetblue; border-right: none;font-size: 20px; display: flex; justify-content: center; align-items: center; min-height: 720px;width: 1200px; padding: 10px;">
+        <div class="gridcontainer" style="display: grid; grid-template-columns: 600px 600px; grid-template-rows: 144px 36px 60px 480px ;">
+            <div class="grid-top" style=" grid-column: 1/3;grid-row: 1/2; grid-template-columns: 600px 600px; grid-template-rows: 144px; display: grid;">
+                <div style="grid-row: 1/2; grid-column: 1/2; display: flex; justify-content: center; align-content: center;"><img src="./ImagenCabecera.png" style="object-fit: contain; max-width: 600px;" alt=""></div>
+                <div style="grid-row: 1/2; grid-column: 2/3; display: flex; justify-content: center; align-content: center;"><img src="./ImagenCabecera.png" style="object-fit: contain; max-width: 600px;" alt=""></div>
+            </div>
+            <div class="contactoLeft" style="display: flex; justify-content: center; align-content: center; width: 100%; height: 100%; grid-column: 1/2;grid-row: 2/3; color: black; font-size: 11px; font-family: Arial, Helvetica, sans-serif; line-height: 19px;">Av.Nicolás de Piérola 872, Trujillo. Telf: 98511514 (044) 505010 (044) 296796<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Facebook: SaludPrimavera Web: www.saludprimavera.com.pe </div>
+            <div class="contactoRight" style="display: flex; justify-content: center; align-content: center; width: 100%; height: 100%; grid-column: 2/3;grid-row: 2/3; color: black; font-size: 11px; font-family: Arial, Helvetica, sans-serif; line-height: 19px;">Av.Nicolás de Piérola 872, Trujillo. Telf: 98511514 (044) 505010 (044) 296796<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Facebook: SaludPrimavera Web: www.saludprimavera.com.pe</div>
+            <div class="infoLeft" style="width: 100%; height: 100%; grid-column: 1/2;grid-row: 3/4;"></div>
+            <div class="infoRight" style="width: 100%; height: 100%; grid-column: 2/3;grid-row: 3/4;"></div>
+            <div class="contenedorCuadro" style="grid-column: 1/3; grid-row: 4/5; padding: 10px; display: flex; justify-content: center; align-content: center;">
+                <div class="cuadro" style=" width: 100%; height: 100%; "></div>
+            </div>
+            <div class="final"></div>
+        </div>
+    </span>
+
+    <script src="./data.js">
+        // LLamada a data
+    </script>
+    <script>
+        //Obteniendo Datos
+        const data=localStorage.getItem('datos');
+        console.log(data);
+        console.log(JSON.parse(data).pa);
+
+        
+        //Construyendo zonas
+        const infoLeft = document.querySelector('.infoLeft');
+        infoLeft.style.display='grid';
+        infoLeft.style.gridTemplateColumns='80% 20%';
+        infoLeft.style.gridTemplateRows='50% 50%';
+        const pacienteLeft = document.createElement('div');
+        pacienteLeft.style.gridColumn='1/2';
+        pacienteLeft.style.gridRow='1/2';
+        pacienteLeft.style.fontSize='14px';
+        pacienteLeft.style.marginLeft='14px';
+        pacienteLeft.style.fontFamily='Arial, Helvetica, sans-serif';
+        pacienteLeft.style.color='black';
+        //Texto de paciente
+        pacienteLeft.innerHTML=`PACIENTE&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).pa.toUpperCase()}</b>`;
+        infoLeft.appendChild(pacienteLeft);
+        const diagnostico=document.createElement('div');
+        diagnostico.style.gridColumn='1/2';
+        diagnostico.style.gridRow='2/3';
+        diagnostico.style.fontFamily='Arial, Helvetica, sans-serif';
+        diagnostico.style.color='black';
+        diagnostico.style.marginLeft='14px';
+        diagnostico.style.fontSize='14px';
+        infoLeft.appendChild(diagnostico);
+        diagnostico.innerHTML=`DIAGNÓSTICO&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).diag.toUpperCase()}</b>`;
+        const edad=document.createElement('div');
+        edad.style.gridColumn='2/3';
+        edad.style.gridRow='1/2';
+        edad.style.fontFamily='Arial, Helvetica, sans-serif';
+        edad.style.color='black';
+        edad.style.marginLeft='14px';
+        edad.style.fontSize='14px';
+        infoLeft.appendChild(edad);
+        edad.innerHTML=`EDAD&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).edad.toUpperCase()}</b>`;
+
+        const condigoCie=document.createElement('div');
+        condigoCie.style.gridColumn='2/3';
+        condigoCie.style.gridRow='2/3';
+        condigoCie.style.fontFamily='Arial, Helvetica, sans-serif';
+        condigoCie.style.color='black';
+        condigoCie.style.marginLeft='14px';
+        condigoCie.style.fontSize='13px';
+        infoLeft.style.position='relative';
+        condigoCie.style.position='relative';
+        condigoCie.style.width="max-content";
+        condigoCie.style.zIndex='100';
+        infoLeft.appendChild(condigoCie);
+        condigoCie.innerHTML=`CIE-10&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).cie.toUpperCase()}</b>`;
+
+        const infoRight = document.querySelector('.infoRight');
+        infoRight.style.display='grid';
+        infoRight.style.gridTemplateColumns='80% 20%';
+        infoRight.style.gridTemplateRows='50% 50%';
+        const pacienteRight=document.createElement('div');
+        pacienteRight.style.gridColumn='1/2';
+        pacienteRight.style.gridRow='1/2';
+        pacienteRight.style.fontSize='13px';
+        pacienteRight.style.marginLeft='70px';
+        pacienteRight.style.fontFamily='Arial, Helvetica, sans-serif';
+        pacienteRight.style.color='black';
+
+        pacienteRight.innerHTML=`PACIENTE&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).pa.toUpperCase()}</b>`;
+        infoRight.appendChild(pacienteRight);
+
+        const proximaCita=document.createElement('div');
+        proximaCita.style.gridColumn='1/2';
+        proximaCita.style.gridRow='2/3';
+        proximaCita.style.fontFamily='Arial, Helvetica, sans-serif';
+        proximaCita.style.color='black';
+        proximaCita.style.marginLeft='70px';
+        proximaCita.style.fontSize='13px';
+        infoRight.appendChild(proximaCita);
+        proximaCita.innerHTML=`PRÓXIMA CITA&nbsp&nbsp:<b>${JSON.parse(data).proxima.toUpperCase()}</b>`;
+
+        const edadRight=document.createElement('div');
+        edadRight.style.gridColumn='2/3';
+        edadRight.style.gridRow='1/2';
+        edadRight.style.fontFamily='Arial, Helvetica, sans-serif';
+        edadRight.style.color='black';
+        edadRight.style.marginLeft='-30px';
+        edadRight.style.fontSize='13px';
+        infoRight.appendChild(edadRight);
+        edadRight.innerHTML=`EDAD&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).edad.toUpperCase()}</b>`;
+
+        const fecha=document.createElement('div');
+        fecha.style.gridColumn='2/3';
+        fecha.style.gridRow='2/3';
+        fecha.style.fontFamily='Arial, Helvetica, sans-serif';
+        fecha.style.color='black';
+        fecha.style.marginLeft='-30px';
+        fecha.style.fontSize='13px';
+        infoRight.appendChild(fecha);
+        fecha.innerHTML=`FECHA&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<b>${JSON.parse(data).fecha.toUpperCase()}</b>`;
+
+         //Objetos de la tabla, clase medicamentos
+
+        const productos=localStorage.getItem('productosOInsumos');
+        const objetoRecorrible= Object.values(JSON.parse(productos));
+
+
+        let arrayNombresGenericos=[];
+        let arrayNombresComerciales=[];
+        let arrayConcentracion=[];
+        let arrayPresentacion=[];
+        let arrayDosis=[];
+        let arrayDuraciones=[];
+        let cuentaDeProductos=0;
+
+        objetoRecorrible.forEach(producto=>{
+            arrayNombresGenericos.push(producto.nombreGenerico);
+            arrayNombresComerciales.push(producto.nombreComercial);
+            arrayConcentracion.push(producto.concentracion);
+            arrayPresentacion.push(producto.presentacion);
+            arrayDosis.push(producto.dosisBarraFrecuencia);
+            arrayDuraciones.push(producto.duracion);
+            cuentaDeProductos++;
+        });
+        console.log(arrayNombresGenericos);
+        console.log(arrayNombresComerciales);
+        console.log(arrayConcentracion);
+        console.log(arrayPresentacion);
+        console.log(arrayDosis);
+        console.log(arrayDuraciones);
+        console.log(cuentaDeProductos);
+
+
+        //Utilizando datos armar el cuadro
+
+        const cuadro=document.querySelector('.cuadro');
+        cuadro.style.display='grid';
+        let valueColumnasCuadro=`repeat(${cuentaDeProductos},minmax(0,104px))`;
+        cuadro.style.gridTemplateColumns='212px 212px 141.6px 141.6px 236px 236px';
+        cuadro.style.gridTemplateRows=`27px 27px ${valueColumnasCuadro} 40px 27px 36px`;
+
+
+        const tituloProducto=document.createElement('div');
+        tituloProducto.style.gridColumn='1/5';
+        tituloProducto.style.gridRow='1/2';
+        tituloProducto.style.fontFamily='Arial, Helvetica, sans-serif';
+        tituloProducto.style.color='black';
+        tituloProducto.style.fontSize='14px';
+        tituloProducto.style.display='flex';
+        tituloProducto.style.justifyContent='center';
+        tituloProducto.style.alignItems='center';
+        tituloProducto.innerHTML=`PRODUCTOS O INSUMOS`;
+        tituloProducto.style.border='1px solid black';
+        
+        cuadro.appendChild(tituloProducto);
+
+        const tituloIndicaciones=document.createElement('div');
+        tituloIndicaciones.style.gridColumn='5/7';
+        tituloIndicaciones.style.gridRow='1/2';
+        tituloIndicaciones.style.fontFamily='Arial, Helvetica, sans-serif';
+        tituloIndicaciones.style.color='black';
+        tituloIndicaciones.style.fontSize='14px';
+        tituloIndicaciones.style.display='flex';
+        tituloIndicaciones.style.justifyContent='center';
+        tituloIndicaciones.style.alignItems='center';
+        tituloIndicaciones.innerHTML=`INDICACIONES`;
+        tituloIndicaciones.style.border='1px solid black';
+        tituloIndicaciones.style.borderLeft='none';
+        cuadro.appendChild(tituloIndicaciones);
+
+        const nombreGenerico=document.createElement('div');
+        nombreGenerico.style.gridColumn='1/2';
+        nombreGenerico.style.gridRow='2/3';
+        nombreGenerico.style.fontFamily='Arial, Helvetica, sans-serif';
+        nombreGenerico.style.color='black';
+        nombreGenerico.style.fontSize='13px';
+        nombreGenerico.style.display='flex';
+        nombreGenerico.style.justifyContent='center';
+        nombreGenerico.style.alignItems='center';
+        nombreGenerico.innerHTML=`NOMBRE GENÉRICO`;
+        nombreGenerico.style.border='1px solid black';
+        nombreGenerico.style.borderTop='none';
+        cuadro.appendChild(nombreGenerico);
+
+        const nombreComercial=document.createElement('div');
+        nombreComercial.style.gridColumn='2/3';
+        nombreComercial.style.gridRow='2/3';
+        nombreComercial.style.fontFamily='Arial, Helvetica, sans-serif';
+        nombreComercial.style.color='black';
+        nombreComercial.style.fontSize='13px';
+        nombreComercial.style.display='flex';
+        nombreComercial.style.justifyContent='center';
+        nombreComercial.style.alignItems='center';
+        nombreComercial.innerHTML=`NOMBRE COMERCIAL`;
+        nombreComercial.style.border='1px solid black';
+        nombreComercial.style.borderTop='none';
+        nombreComercial.style.borderLeft='none';
+        cuadro.appendChild(nombreComercial);
+
+        const presentacion=document.createElement('div');
+        presentacion.style.gridColumn='4/5';
+        presentacion.style.gridRow='2/3';
+        presentacion.style.fontFamily='Arial, Helvetica, sans-serif';
+        presentacion.style.color='black';
+        presentacion.style.fontSize='13px';
+        presentacion.style.display='flex';
+        presentacion.style.justifyContent='center';
+        presentacion.style.alignItems='center';
+        presentacion.innerHTML=`PRESEN/CANT`;
+        presentacion.style.border='1px solid black';
+        presentacion.style.borderTop='none';
+        presentacion.style.borderLeft='none';
+        cuadro.appendChild(presentacion);
+
+        const concentracion=document.createElement('div');
+        concentracion.style.gridColumn='3/4';
+        concentracion.style.gridRow='2/3';
+        concentracion.style.fontFamily='Arial, Helvetica, sans-serif';
+        concentracion.style.color='black';
+        concentracion.style.fontSize='13px';
+        concentracion.style.display='flex';
+        concentracion.style.justifyContent='center';
+        concentracion.style.alignItems='center';
+        concentracion.innerHTML=`CONCENTRACIÓN`;
+        concentracion.style.border='1px solid black';
+        concentracion.style.borderTop='none';
+        
+        concentracion.style.borderLeft='none';
+        cuadro.appendChild(concentracion);
+
+
+        const dosis=document.createElement('div');
+        dosis.style.gridColumn='5/6';
+        dosis.style.gridRow="2/3"
+        dosis.style.fontFamily='Arial, Helvetica, sans-serif';
+        dosis.style.color='black';
+        dosis.style.fontSize='13px';
+        dosis.style.display='flex';
+        dosis.style.justifyContent='center';
+        dosis.style.alignItems='center';
+        dosis.innerHTML=`DOSIS/FREC`;
+        dosis.style.border='1px solid black';
+        dosis.style.borderTop='none';
+        dosis.style.borderLeft='none';
+        
+        cuadro.appendChild(dosis)
+
+        const indicaciones=document.createElement('div');
+        indicaciones.style.gridColumn='6/7';
+        indicaciones.style.gridRow='2/3';
+        indicaciones.style.fontFamily='Arial, Helvetica, sans-serif';
+        indicaciones.style.color='black';
+        indicaciones.style.fontSize='13px';
+        indicaciones.style.display='flex';
+        indicaciones.style.justifyContent='center';
+        indicaciones.style.alignItems='center';
+        indicaciones.innerHTML=`DURACIÓN`;
+        indicaciones.style.border='1px solid black';
+        indicaciones.style.borderTop='none';
+        indicaciones.style.borderLeft='none';
+        cuadro.appendChild(indicaciones);
+
+
+       
+
+        //Clase Medicamentos
+        class Medicamento{
+            constructor(nombreGenerico,nombreComercial,concentracion,presentacion,dosis,duracion,fila){
+                this.nombreGenerico=nombreGenerico;
+                this.nombreComercial=nombreComercial;
+                this.concentracion=concentracion;
+                this.presentacion=presentacion;
+                this.dosis=dosis;
+                this.duracion=duracion;
+
+                //Obtener fila
+                let inicio=fila+3;
+                let final=fila+4;
+                let textoRowProperty=`${inicio}/${final}`
+
+                //Creacion de secciones
+                const primeraSeccion=document.createElement('div');
+                primeraSeccion.style.gridColumn='1/2';
+                primeraSeccion.style.gridRow=textoRowProperty;
+                primeraSeccion.style.fontFamily='Arial, Helvetica, sans-serif';
+                primeraSeccion.style.color='black';
+                primeraSeccion.style.fontSize='13px';
+                primeraSeccion.style.lineHeight="26px"
+                primeraSeccion.style.display='flex';
+                primeraSeccion.style.justifyContent='start';
+                primeraSeccion.style.alignItems='start';
+                primeraSeccion.innerHTML=this.nombreGenerico.toUpperCase();
+                primeraSeccion.style.border='1px solid black';
+                primeraSeccion.style.borderTop='none';
+                cuadro.appendChild(primeraSeccion);
+                const segundaSeccion=document.createElement('div');
+                segundaSeccion.style.gridColumn='2/3';
+                segundaSeccion.style.gridRow=textoRowProperty;
+                segundaSeccion.style.fontFamily='Arial, Helvetica, sans-serif'; 
+                segundaSeccion.style.color='black';
+                segundaSeccion.style.fontSize='13px';
+                segundaSeccion.style.lineHeight="26px"
+                segundaSeccion.style.display='flex';
+                segundaSeccion.style.justifyContent='start';
+                segundaSeccion.style.alignItems='start';
+                segundaSeccion.innerHTML=this.nombreComercial.toUpperCase();
+                segundaSeccion.style.border='1px solid black';
+                segundaSeccion.style.borderTop='none';
+                segundaSeccion.style.borderLeft='none';
+                cuadro.appendChild(segundaSeccion);
+
+
+                const terceraSeccion=document.createElement('div');
+                terceraSeccion.style.gridColumn='3/4';
+                terceraSeccion.style.gridRow=textoRowProperty;
+                terceraSeccion.style.fontFamily='Arial, Helvetica, sans-serif';
+                terceraSeccion.style.color='black';
+                terceraSeccion.style.fontSize='13px';
+                terceraSeccion.style.lineHeight="26px"
+                terceraSeccion.style.display='flex';
+                terceraSeccion.style.justifyContent='start';
+                terceraSeccion.style.alignItems='start';
+                terceraSeccion.innerHTML=this.concentracion.toUpperCase();
+                terceraSeccion.style.border='1px solid black';
+                terceraSeccion.style.borderTop='none';
+                terceraSeccion.style.borderLeft='none';
+                cuadro.appendChild(terceraSeccion);
+
+                const cuartaSeccion=document.createElement('div');
+                cuartaSeccion.style.gridColumn='4/5';
+                cuartaSeccion.style.gridRow=textoRowProperty;
+                cuartaSeccion.style.fontFamily='Arial, Helvetica, sans-serif';
+                cuartaSeccion.style.color='black';
+                cuartaSeccion.style.fontSize='13px';
+                cuartaSeccion.style.lineHeight="26px"
+                cuartaSeccion.style.display='flex';
+                cuartaSeccion.style.justifyContent='start';
+                cuartaSeccion.style.alignItems='start';
+                cuartaSeccion.innerHTML=this.presentacion.toUpperCase();
+                cuartaSeccion.style.border='1px solid black';
+                cuartaSeccion.style.borderTop='none';
+                cuartaSeccion.style.borderLeft='none';
+                cuadro.appendChild(cuartaSeccion);
+
+
+                const quintaSeccion=document.createElement('div');
+                quintaSeccion.style.gridColumn='5/6';
+                quintaSeccion.style.gridRow=textoRowProperty;
+                quintaSeccion.style.fontFamily='Arial, Helvetica, sans-serif';
+                quintaSeccion.style.color='black';
+                quintaSeccion.style.fontSize='13px';
+                quintaSeccion.style.lineHeight="26px"
+                quintaSeccion.style.display='flex';
+                quintaSeccion.style.justifyContent='start';
+                quintaSeccion.style.alignItems='start';
+                quintaSeccion.innerHTML=this.dosis.toUpperCase();
+                quintaSeccion.style.border='1px solid black';
+                quintaSeccion.style.borderTop='none';
+                quintaSeccion.style.borderLeft='none';
+                cuadro.appendChild(quintaSeccion);
+
+                const sextaSeccion=document.createElement('div');
+                sextaSeccion.style.gridColumn='6/7';
+                sextaSeccion.style.gridRow=textoRowProperty;
+                sextaSeccion.style.fontFamily='Arial, Helvetica, sans-serif';
+                sextaSeccion.style.color='black';
+                sextaSeccion.style.fontSize='13px';
+                sextaSeccion.style.lineHeight="26px"
+                sextaSeccion.style.display='flex';
+                sextaSeccion.style.justifyContent='start';
+                sextaSeccion.style.alignItems='start';
+                sextaSeccion.innerHTML=this.duracion.toUpperCase();
+                sextaSeccion.style.border='1px solid black';
+                sextaSeccion.style.borderTop='none';
+                sextaSeccion.style.borderLeft='none';
+                cuadro.appendChild(sextaSeccion);
+
+
+            }
+        }
+        
+
+        //Creacion de objetos medicamento
+        for(let i=0;i<cuentaDeProductos;i++){
+            const medicamento=new Medicamento(arrayNombresGenericos[i],arrayNombresComerciales[i],arrayConcentracion[i],arrayPresentacion[i],arrayDosis[i],arrayDuraciones[i],i);
+        }
+    
+        //Colocación pie de página
+        const tratamiento=document.createElement('div');
+        let inicioPie=cuentaDeProductos+3;
+        let finalPie=inicioPie+1;
+        tratamiento.style.gridColumn='1/7';
+        tratamiento.style.gridRow=`${inicioPie}/${finalPie}`;
+        tratamiento.style.fontFamily='Arial, Helvetica, sans-serif';
+        tratamiento.style.color='black';
+        tratamiento.style.fontSize='13px';
+        tratamiento.style.lineHeight="26px"
+        tratamiento.style.display='flex';
+        tratamiento.style.justifyContent='start';
+        tratamiento.style.alignItems='end';
+        tratamiento.innerHTML='TRATAMIENTO:';
+        cuadro.appendChild(tratamiento);
+
+        const cuadroFinal=document.createElement('div');
+        cuadroFinal.style.gridColumn='1/7';
+        cuadroFinal.style.gridRow=`${inicioPie + 1}/${finalPie + 1}`;
+        cuadroFinal.style.border='1px solid black';
+        cuadroFinal.innerHTML="&nbsp-"
+        cuadroFinal.style.fontFamily='Arial, Helvetica, sans-serif';
+        cuadroFinal.style.color='black';
+        cuadroFinal.style.display='flex';
+        cuadroFinal.style.justifyContent='start';
+        cuadroFinal.style.alignContent='end';
+        cuadro.appendChild(cuadroFinal);
+        
+        const textoFinal=document.createElement('div');
+        textoFinal.style.gridColumn='1/7';
+        textoFinal.style.gridRow=`${inicioPie + 2}/${finalPie + 2}`;
+        textoFinal.style.fontFamily='Arial, Helvetica, sans-serif';
+        textoFinal.style.color='black';
+        textoFinal.innerHTML="Válido Hasta: "
+        textoFinal.style.display='flex';
+        textoFinal.style.justifyContent='start';    
+        textoFinal.style.alignItems='end';
+        textoFinal.style.fontSize='12px';
+        cuadro.appendChild(textoFinal);
+
+
+    </script>
+</body>
+ </html>
+ 
